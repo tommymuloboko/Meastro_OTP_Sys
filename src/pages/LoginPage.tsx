@@ -32,71 +32,82 @@ export default function LoginPage() {
 
   return (
     <div className="login-page">
-      <div className="login-container">
-        <div className="login-brand">
-          <Fuel size={48} className="brand-icon" />
-          <h1>Maestro Fuel</h1>
-          <p>Online Fuel Ordering System</p>
+      {/* QBO green top bar */}
+      <div className="login-topbar">
+        <div className="login-topbar-brand">
+          <div className="login-topbar-icon">
+            <Fuel size={20} />
+          </div>
+          <span className="login-topbar-text">Maestro Fuel</span>
         </div>
+      </div>
 
-        <div className="login-card">
-          <div className="role-tabs">
-            <button
-              className={`role-tab ${role === 'customer' ? 'active' : ''}`}
-              onClick={() => { setRole('customer'); setError(''); }}
-            >
-              <User size={18} />
-              Customer
-            </button>
-            <button
-              className={`role-tab ${role === 'station_manager' ? 'active' : ''}`}
-              onClick={() => { setRole('station_manager'); setError(''); }}
-            >
-              <Shield size={18} />
-              Station Manager
-            </button>
+      <div className="login-body">
+        <div className="login-container">
+          <div className="login-brand">
+            <h1>Sign in</h1>
+            <p>Online Fuel Ordering System</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder={role === 'customer' ? 'customer@maestro.com' : 'manager@maestro.com'}
-                autoComplete="email"
-              />
+          <div className="login-card">
+            <div className="role-tabs">
+              <button
+                className={`role-tab ${role === 'customer' ? 'active' : ''}`}
+                onClick={() => { setRole('customer'); setError(''); }}
+              >
+                <User size={18} />
+                Customer
+              </button>
+              <button
+                className={`role-tab ${role === 'station_manager' ? 'active' : ''}`}
+                onClick={() => { setRole('station_manager'); setError(''); }}
+              >
+                <Shield size={18} />
+                Station Manager
+              </button>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="Enter password"
-                autoComplete="current-password"
-              />
+            <form onSubmit={handleSubmit} className="login-form">
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder={role === 'customer' ? 'customer@maestro.com' : 'manager@maestro.com'}
+                  autoComplete="email"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                  autoComplete="current-password"
+                />
+              </div>
+
+              {error && <div className="form-error">{error}</div>}
+
+              <button type="submit" className="btn btn-primary btn-full">
+                <LogIn size={18} />
+                Sign In
+              </button>
+            </form>
+
+            <div className="demo-creds">
+              <p><strong>Demo Credentials:</strong></p>
+              {role === 'customer' ? (
+                <p>customer@maestro.com / password123</p>
+              ) : (
+                <p>manager@maestro.com / password123</p>
+              )}
             </div>
-
-            {error && <div className="form-error">{error}</div>}
-
-            <button type="submit" className="btn btn-primary btn-full">
-              <LogIn size={18} />
-              Sign In
-            </button>
-          </form>
-
-          <div className="demo-creds">
-            <p><strong>Demo Credentials:</strong></p>
-            {role === 'customer' ? (
-              <p>customer@maestro.com / password123</p>
-            ) : (
-              <p>manager@maestro.com / password123</p>
-            )}
           </div>
         </div>
       </div>

@@ -1,57 +1,68 @@
-/* ===== Maestro Fuel — QuickBooks-Style Theme ===== */
+/* ===== Maestro Fuel — QuickBooks Online Theme ===== */
 
 :root {
-  /* Brand */
+  /* Brand — QuickBooks green */
+  --qb-green: #2ca01c;
+  --qb-green-dark: #1a7a0e;
+  --qb-green-light: #e8f5e6;
+  --qb-green-subtle: rgba(44, 160, 28, 0.08);
+
+  /* Primary maps to QBO green */
   --primary: #2ca01c;
-  --primary-hover: #248f17;
-  --primary-light: rgba(44, 160, 28, 0.08);
-  --primary-subtle: rgba(44, 160, 28, 0.15);
+  --primary-hover: #1a7a0e;
+  --primary-light: rgba(44, 160, 28, 0.07);
+  --primary-subtle: rgba(44, 160, 28, 0.12);
 
   /* Semantic */
-  --success: #2ca01c;
-  --success-hover: #248f17;
-  --success-light: rgba(44, 160, 28, 0.08);
-  --danger: #d13b3b;
-  --danger-hover: #b33030;
-  --danger-light: rgba(209, 59, 59, 0.08);
+  --success: #108a00;
+  --success-hover: #0d6b00;
+  --success-light: rgba(16, 138, 0, 0.08);
+  --danger: #d52b1e;
+  --danger-hover: #b52318;
+  --danger-light: rgba(213, 43, 30, 0.07);
   --warning: #bf7e16;
   --warning-light: rgba(191, 126, 22, 0.08);
   --info: #0077c5;
-  --info-light: rgba(0, 119, 197, 0.08);
+  --info-light: rgba(0, 119, 197, 0.07);
   --purple: #8250df;
-  --purple-light: rgba(130, 80, 223, 0.08);
+  --purple-light: rgba(130, 80, 223, 0.07);
 
-  /* Surfaces */
-  --bg: #f5f5f5;
+  /* Surfaces — QBO light theme */
+  --bg: #f4f5f8;
   --bg-surface: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-hover: #fafafa;
+  --bg-card-hover: #f9fafb;
   --bg-input: #ffffff;
-  --bg-sidebar: #1a1a2e;
-  --bg-sidebar-hover: rgba(255, 255, 255, 0.07);
-  --bg-sidebar-active: rgba(44, 160, 28, 0.18);
+  --bg-sidebar: #ffffff;
+  --bg-sidebar-hover: #f4f5f8;
+  --bg-sidebar-active: var(--qb-green-light);
 
-  /* Borders */
-  --border: #e0e3e8;
-  --border-light: #ebebeb;
+  /* Top bar */
+  --topbar-bg: #2ca01c;
+  --topbar-text: #ffffff;
 
-  /* Type */
-  --text: #1a1a1a;
-  --text-secondary: #5a6370;
-  --text-muted: #8c9bab;
-  --text-sidebar: rgba(255, 255, 255, 0.65);
-  --text-sidebar-active: #ffffff;
+  /* Borders — QBO uses subtle gray borders */
+  --border: #d4d7dc;
+  --border-light: #e8eaed;
+
+  /* Type — QBO typography */
+  --text: #393a3d;
+  --text-secondary: #6b6c72;
+  --text-muted: #8d9096;
+  --text-sidebar: #393a3d;
+  --text-sidebar-active: #2ca01c;
 
   /* Shape */
   --radius: 8px;
-  --radius-sm: 6px;
+  --radius-sm: 4px;
   --radius-lg: 12px;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.12);
 
   /* Layout */
-  --sidebar-width: 250px;
+  --sidebar-width: 236px;
+  --topbar-height: 56px;
 }
 
 /* ===== Reset ===== */
@@ -62,7 +73,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir Next', 'Avenir', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -76,22 +87,200 @@ body {
 }
 
 /* ============================================================
-   LAYOUT — Sidebar + Content
+   LAYOUT — Top Bar + Sidebar + Content
    ============================================================ */
 .app-layout {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-/* ── Sidebar ── */
+/* ── QBO Green Top Bar ── */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--topbar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 300;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.topbar-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.topbar-brand-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.topbar-company {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 6px 14px;
+  min-width: 240px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: background 0.15s;
+}
+
+.topbar-search:hover,
+.topbar-search:focus-within {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.topbar-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  width: 100%;
+  font-family: inherit;
+}
+
+.topbar-search input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-create-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 300;
+  transition: background 0.12s;
+}
+
+.topbar-create-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.topbar-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.12s;
+}
+
+.topbar-user-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.topbar-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.topbar-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.topbar-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* ── QBO body (sidebar + content) ── */
+.app-body {
+  display: flex;
+  margin-top: var(--topbar-height);
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+/* ── QBO Light Sidebar ── */
 .sidebar {
   width: var(--sidebar-width);
   background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  top: 0;
+  top: var(--topbar-height);
   left: 0;
   bottom: 0;
   z-index: 200;
@@ -102,102 +291,204 @@ body {
   padding: 0;
 }
 
-/* Brand */
-.sidebar-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 22px 20px 18px;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.sidebar-logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  flex-shrink: 0;
-}
-
-.sidebar-brand-text {
-  font-size: 17px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.2px;
-}
-
 /* Nav */
 .sidebar-nav {
-  padding: 16px 12px 12px;
+  padding: 12px 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
 }
 
 .sidebar-section-label {
   display: block;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: rgba(255, 255, 255, 0.3);
-  padding: 0 10px 8px;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  padding: 16px 20px 6px;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  border-left: 3px solid transparent;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   color: var(--text-sidebar);
-  transition: all 0.12s ease;
+  transition: all 0.1s ease;
 }
 
 .sidebar-link:hover {
   background: var(--bg-sidebar-hover);
-  color: var(--text-sidebar);
+  color: var(--text);
 }
 
 .sidebar-link.active {
   background: var(--bg-sidebar-active);
+  border-left-color: var(--qb-green);
   color: var(--text-sidebar-active);
   font-weight: 600;
 }
 
 .sidebar-link.active .sidebar-link-arrow {
   opacity: 1;
+  color: var(--qb-green);
 }
 
 .sidebar-link-arrow {
   margin-left: auto;
   opacity: 0;
-  transition: opacity 0.12s;
+  color: var(--text-muted);
+  transition: opacity 0.1s;
 }
 
 .sidebar-link:hover .sidebar-link-arrow {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 /* Dropdown toggle */
 .sidebar-dropdown-toggle {
   width: 100%;
   border: none;
+  border-left: 3px solid transparent;
   background: transparent;
   cursor: pointer;
   font-family: inherit;
   text-align: left;
   color: inherit;
   font-size: inherit;
-  padding: 10px 12px;
+  padding: 10px 20px;
+}
+
+.sidebar-dropdown-toggle:hover {
+  background: var(--bg-sidebar-hover);
+}
+
+.sidebar-dropdown-toggle.open {
+  font-weight: 600;
+  color: var(--text-sidebar-active);
+}
+
+.sidebar-dropdown-arrow {
+  margin-left: auto;
+  opacity: 0.4;
+  transition: transform 0.2s ease, opacity 0.1s;
+}
+
+.sidebar-dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.sidebar-dropdown-toggle:hover .sidebar-dropdown-arrow {
+  opacity: 0.6;
+}
+
+.sidebar-dropdown-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #fafbfc;
+}
+
+.sidebar-sub-link {
+  font-size: 13px !important;
+  padding: 8px 20px 8px 36px !important;
+}
+
+/* Bottom area */
+.sidebar-bottom {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.sidebar-role-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: var(--qb-green-light);
+  color: var(--qb-green);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--qb-green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--qb-green);
+  flex-shrink: 0;
+}
+
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-email {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.sidebar-logout:hover {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+/* ── Main content area ── */
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: calc(100vh - var(--topbar-height));
+  background: var(--bg);
+}
 }
 
 .sidebar-dropdown-arrow {
@@ -338,10 +629,11 @@ body {
 }
 
 .page-header h1 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 2px;
+  letter-spacing: -0.3px;
 }
 
 .text-muted {
@@ -350,25 +642,62 @@ body {
 }
 
 /* ============================================================
-   LOGIN PAGE
+   LOGIN PAGE — QBO Style
    ============================================================ */
 .login-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  background: #f4f5f8;
+}
+
+.login-topbar {
+  height: 56px;
+  background: var(--qb-green);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.login-topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-topbar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f1f3;
-  padding: 20px;
+  color: #fff;
+}
+
+.login-topbar-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.login-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .login-container {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
 }
 
 .login-brand {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .login-brand .brand-icon {
@@ -376,10 +705,10 @@ body {
 }
 
 .login-brand h1 {
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   color: var(--text);
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .login-brand p {
@@ -390,9 +719,9 @@ body {
 .login-card {
   background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 32px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow);
 }
 
 .role-tabs {
@@ -407,9 +736,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px;
+  padding: 10px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   background: #fff;
   color: var(--text-secondary);
   font-size: 13px;
@@ -424,8 +753,8 @@ body {
 }
 
 .role-tab.active {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--qb-green);
+  border-color: var(--qb-green);
   color: white;
 }
 
@@ -439,7 +768,7 @@ body {
   margin-top: 20px;
   padding: 12px;
   background: var(--warning-light);
-  border: 1px solid rgba(191, 126, 22, 0.2);
+  border: 1px solid rgba(191, 126, 22, 0.18);
   border-radius: var(--radius-sm);
   text-align: center;
   font-size: 12px;
@@ -485,8 +814,8 @@ body {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
+  border-color: var(--qb-green);
+  box-shadow: 0 0 0 3px var(--qb-green-subtle);
 }
 
 .form-group select {
@@ -538,7 +867,7 @@ body {
 }
 
 .form-section h3 svg {
-  color: var(--primary);
+  color: var(--qb-green);
 }
 
 .order-form {
@@ -546,37 +875,41 @@ body {
 }
 
 /* ============================================================
-   BUTTONS
+   BUTTONS — QBO Style
    ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 9px 18px;
-  border-radius: var(--radius-sm);
+  padding: 8px 20px;
+  border-radius: 20px;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.12s;
   white-space: nowrap;
+  font-family: inherit;
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: var(--qb-green);
   color: white;
+  box-shadow: 0 1px 3px rgba(44, 160, 28, 0.25);
 }
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background: var(--qb-green-dark);
+  box-shadow: 0 2px 6px rgba(44, 160, 28, 0.35);
 }
 
 .btn-success {
-  background: var(--success);
+  background: var(--qb-green);
   color: white;
+  box-shadow: 0 1px 3px rgba(44, 160, 28, 0.25);
 }
 .btn-success:hover {
-  background: var(--success-hover);
+  background: var(--qb-green-dark);
 }
 
 .btn-danger {
@@ -589,8 +922,9 @@ body {
 
 .btn-danger-outline {
   background: transparent;
-  border: 1px solid var(--danger);
+  border: 1.5px solid var(--danger);
   color: var(--danger);
+  border-radius: 20px;
 }
 .btn-danger-outline:hover {
   background: var(--danger-light);
@@ -598,12 +932,12 @@ body {
 
 .btn-outline {
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   color: var(--text-secondary);
 }
 .btn-outline:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: var(--qb-green);
+  color: var(--qb-green);
 }
 
 .btn-ghost {
@@ -616,12 +950,12 @@ body {
 }
 
 .btn-sm {
-  padding: 6px 12px;
+  padding: 5px 14px;
   font-size: 12px;
 }
 
 .btn-lg {
-  padding: 12px 24px;
+  padding: 10px 28px;
   font-size: 15px;
 }
 
@@ -631,9 +965,10 @@ body {
 
 .btn-link {
   background: none;
-  color: var(--primary);
+  color: var(--qb-green);
   padding: 0;
   font-weight: 600;
+  border-radius: 0;
 }
 .btn-link:hover {
   text-decoration: underline;
@@ -693,7 +1028,7 @@ body {
 }
 
 .data-table thead {
-  background: var(--bg);
+  background: #f4f5f8;
   border-bottom: 2px solid var(--border);
 }
 
@@ -748,8 +1083,8 @@ body {
 }
 
 .cell-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-light);
+  border-color: var(--qb-green);
+  box-shadow: 0 0 0 2px var(--qb-green-subtle);
 }
 
 .cell-input-sm {
@@ -960,7 +1295,7 @@ body {
 }
 
 .pump-otp-input:focus {
-  border-color: var(--primary);
+  border-color: var(--qb-green);
 }
 
 .pump-error {
@@ -1229,7 +1564,7 @@ body {
   align-items: center;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border-light);
-  background: #fafbfc;
+  background: #f9fafb;
 }
 
 .order-card-header > div {
@@ -1491,13 +1826,13 @@ body {
 }
 
 .filter-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: var(--qb-green);
+  color: var(--qb-green);
 }
 
 .filter-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--qb-green);
+  border-color: var(--qb-green);
   color: white;
 }
 
