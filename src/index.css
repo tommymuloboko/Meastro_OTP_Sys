@@ -489,7 +489,6 @@ body {
   min-height: calc(100vh - var(--topbar-height));
   background: var(--bg);
 }
-}
 
 .sidebar-dropdown-arrow {
   margin-left: auto;
