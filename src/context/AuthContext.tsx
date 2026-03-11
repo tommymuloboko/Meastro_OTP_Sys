@@ -21,13 +21,21 @@ const DEMO_USERS: Record<string, User & { password: string }> = {
     companyName: 'Maestro Logistics',
     password: 'password123',
   },
-  'manager@maestro.com': {
+  'omc@maestro.com': {
     id: 'mgr-001',
     name: 'Pieter van der Merwe',
-    email: 'manager@maestro.com',
+    email: 'omc@maestro.com',
     role: 'station_manager',
     phone: '+27 71 234 5678',
     siteId: 'SITE-JHB-001',
+    password: 'password123',
+  },
+  'driver@maestro.com': {
+    id: 'drv-001',
+    name: 'Thabo Ndlovu',
+    email: 'driver@maestro.com',
+    role: 'driver',
+    phone: '+27 82 345 6789',
     password: 'password123',
   },
 };

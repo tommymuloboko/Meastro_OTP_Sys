@@ -1,4 +1,4 @@
-export type UserRole = 'customer' | 'station_manager';
+export type UserRole = 'customer' | 'station_manager' | 'driver';
 
 export interface User {
   id: string;
@@ -68,4 +68,28 @@ export interface Site {
   name: string;
   address: string;
   managerId: string;
+}
+
+export interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  companyName: string;
+  createdAt: string;
+}
+
+export type PaymentTransactionType = 'Account Payment' | 'AR Receipt';
+export type PaymentMethod = 'Cash' | 'Check' | 'Credit Card';
+
+export interface Payment {
+  id: string;
+  dateTime: string;
+  customerName: string;
+  customerId: string;
+  transactionType: PaymentTransactionType;
+  amountReceived: number;
+  paymentMethod: PaymentMethod;
+  referenceNumber: string;
+  balanceAfter: number;
 }

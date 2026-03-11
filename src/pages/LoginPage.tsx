@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Fuel, LogIn, Shield, User } from 'lucide-react';
+import { Fuel, LogIn, Shield, Truck, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import type { UserRole } from '../types';
 
@@ -8,7 +8,7 @@ export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [role, setRole] = useState<UserRole>('customer');
+  const [role, setRole] = useState<UserRole>('station_manager');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,7 +24,7 @@ export default function LoginPage() {
 
     const success = login(email, password, role);
     if (success) {
-      navigate(role === 'customer' ? '/dashboard' : '/station');
+      navigate(role === 'customer' ? '/dashboard' : role === 'driver' ? '/driver' : '/station');
     } else {
       setError('Invalid credentials. Use the demo accounts shown below.');
     }
@@ -52,6 +52,13 @@ export default function LoginPage() {
           <div className="login-card">
             <div className="role-tabs">
               <button
+                className={`role-tab ${role === 'station_manager' ? 'active' : ''}`}
+                onClick={() => { setRole('station_manager'); setError(''); }}
+              >
+                <Shield size={18} />
+                OMC
+              </button>
+              <button
                 className={`role-tab ${role === 'customer' ? 'active' : ''}`}
                 onClick={() => { setRole('customer'); setError(''); }}
               >
@@ -59,11 +66,11 @@ export default function LoginPage() {
                 Customer
               </button>
               <button
-                className={`role-tab ${role === 'station_manager' ? 'active' : ''}`}
-                onClick={() => { setRole('station_manager'); setError(''); }}
+                className={`role-tab ${role === 'driver' ? 'active' : ''}`}
+                onClick={() => { setRole('driver'); setError(''); }}
               >
-                <Shield size={18} />
-                Station Manager
+                <Truck size={18} />
+                Driver
               </button>
             </div>
 
@@ -75,7 +82,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder={role === 'customer' ? 'customer@maestro.com' : 'manager@maestro.com'}
+                  placeholder={role === 'customer' ? 'customer@maestro.com' : role === 'driver' ? 'driver@maestro.com' : 'omc@maestro.com'}
                   autoComplete="email"
                 />
               </div>
@@ -104,8 +111,10 @@ export default function LoginPage() {
               <p><strong>Demo Credentials:</strong></p>
               {role === 'customer' ? (
                 <p>customer@maestro.com / password123</p>
+              ) : role === 'driver' ? (
+                <p>driver@maestro.com / password123</p>
               ) : (
-                <p>manager@maestro.com / password123</p>
+                <p>omc@maestro.com / password123</p>
               )}
             </div>
           </div>

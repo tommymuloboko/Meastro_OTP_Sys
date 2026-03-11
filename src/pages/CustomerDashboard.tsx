@@ -101,6 +101,46 @@ export default function CustomerDashboard() {
           </div>
         )}
       </div>
+
+      <div className="section">
+        <div className="section-header">
+          <h2>Transaction Detail</h2>
+        </div>
+        <div className="table-wrapper">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Reference</th>
+                <th>Vehicle/ID</th>
+                <th>Description</th>
+                <th style={{ textAlign: 'right' }}>Qty (L/G)</th>
+                <th style={{ textAlign: 'right' }}>Rate</th>
+                <th style={{ textAlign: 'right' }}>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { date: '02/02', ref: 'TXN-401', vehicle: 'TRUCK-01', desc: 'Diesel (Pump 6)', qty: '120.00', rate: '$1.50', amount: '$180.00', isPayment: false },
+                { date: '02/10', ref: 'PYMT-11', vehicle: 'Manager', desc: 'Payment: EFT/Bank', qty: '—', rate: '—', amount: '($1,000.00)', isPayment: true },
+                { date: '02/15', ref: 'TXN-512', vehicle: 'VAN-09', desc: 'Unleaded (Pump 2)', qty: '45.00', rate: '$1.45', amount: '$65.25', isPayment: false },
+                { date: '02/22', ref: 'TXN-608', vehicle: 'TRUCK-01', desc: 'Diesel (Pump 5)', qty: '150.00', rate: '$1.55', amount: '$232.50', isPayment: false },
+                { date: '02/28', ref: 'TXN-715', vehicle: 'TRUCK-04', desc: 'Diesel (Pump 6)', qty: '518.55', rate: '$1.55', amount: '$803.75', isPayment: false },
+              ].map((t, i) => (
+                <tr key={i}>
+                  <td>{t.date}</td>
+                  <td><span style={{ fontFamily: 'monospace', fontSize: 12 }}>{t.ref}</span></td>
+                  <td>{t.vehicle}</td>
+                  <td>{t.desc}</td>
+                  <td style={{ textAlign: 'right' }}>{t.qty}</td>
+                  <td style={{ textAlign: 'right' }}>{t.rate}</td>
+                  <td style={{ textAlign: 'right', fontWeight: 600, color: t.isPayment ? '#2ca01c' : 'var(--text)' }}>{t.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

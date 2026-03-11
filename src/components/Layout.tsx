@@ -21,6 +21,9 @@ import {
   ArrowLeftRight,
   History,
   Plus,
+  Droplets,
+  DollarSign,
+  Clock,
 } from 'lucide-react';
 
 export default function Layout() {
@@ -30,6 +33,7 @@ export default function Layout() {
   const [mgmtOpen, setMgmtOpen] = useState(() => location.pathname.includes('/management/'));
   const [transactionsOpen, setTransactionsOpen] = useState(() => location.pathname.includes('/transactions/'));
   const [reportsOpen, setReportsOpen] = useState(() => location.pathname.includes('/station/reports/'));
+  const [financialsOpen, setFinancialsOpen] = useState(() => location.pathname.includes('/station/financials/'));
 
   const handleLogout = () => {
     logout();
@@ -89,6 +93,11 @@ export default function Layout() {
                 <>
                   <NavLink to="/station" end className="sidebar-link">
                     <LayoutDashboard size={18} />
+                    <span>Dashboard</span>
+                    <ChevronRight size={14} className="sidebar-link-arrow" />
+                  </NavLink>
+                  <NavLink to="/station/pending" className="sidebar-link">
+                    <Clock size={18} />
                     <span>Pending Orders</span>
                     <ChevronRight size={14} className="sidebar-link-arrow" />
                   </NavLink>
@@ -102,11 +111,28 @@ export default function Layout() {
                     <span>Pump Simulator</span>
                     <ChevronRight size={14} className="sidebar-link-arrow" />
                   </NavLink>
-                  <NavLink to="/station/attendants" className="sidebar-link">
-                    <UserCheck size={18} />
-                    <span>Attendants</span>
-                    <ChevronRight size={14} className="sidebar-link-arrow" />
-                  </NavLink>
+                  <button
+                    className={`sidebar-link sidebar-dropdown-toggle${mgmtOpen ? ' open' : ''}`}
+                    onClick={() => setMgmtOpen(o => !o)}
+                  >
+                    <Settings size={18} />
+                    <span>Management</span>
+                    <ChevronDown size={14} className={`sidebar-dropdown-arrow${mgmtOpen ? ' rotated' : ''}`} />
+                  </button>
+                  {mgmtOpen && (
+                    <div className="sidebar-dropdown-items">
+                      <NavLink to="/station/management/customers" className="sidebar-link sidebar-sub-link">
+                        <Users size={16} />
+                        <span>Manage Customer</span>
+                        <ChevronRight size={14} className="sidebar-link-arrow" />
+                      </NavLink>
+                      <NavLink to="/station/attendants" className="sidebar-link sidebar-sub-link">
+                        <UserCheck size={16} />
+                        <span>Attendants</span>
+                        <ChevronRight size={14} className="sidebar-link-arrow" />
+                      </NavLink>
+                    </div>
+                  )}
 
                   <button
                     className={`sidebar-link sidebar-dropdown-toggle${reportsOpen ? ' open' : ''}`}
@@ -119,27 +145,51 @@ export default function Layout() {
                   {reportsOpen && (
                     <div className="sidebar-dropdown-items">
                       <NavLink to="/station/reports/by-attendant" className="sidebar-link sidebar-sub-link">
-                        <span>By Attendants</span>
+                        <UserCheck size={16} />
+                        <span>Sales by Attendants</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                       <NavLink to="/station/reports/by-vehicle" className="sidebar-link sidebar-sub-link">
-                        <span>By Vehicle</span>
+                        <Car size={16} />
+                        <span>Sales by Vehicle</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                       <NavLink to="/station/reports/by-pump" className="sidebar-link sidebar-sub-link">
-                        <span>By Pump</span>
+                        <Gauge size={16} />
+                        <span>Sales by Pump</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                       <NavLink to="/station/reports/by-grade" className="sidebar-link sidebar-sub-link">
-                        <span>By Grade</span>
+                        <Droplets size={16} />
+                        <span>Summary by Fuel Grade</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                       <NavLink to="/station/reports/by-customer" className="sidebar-link sidebar-sub-link">
-                        <span>By Customer</span>
+                        <Users size={16} />
+                        <span>Sales by Customer</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
-                      <NavLink to="/station/reports/statements" className="sidebar-link sidebar-sub-link">
-                        <span>Statements</span>
+                    </div>
+                  )}
+
+                  <button
+                    className={`sidebar-link sidebar-dropdown-toggle${financialsOpen ? ' open' : ''}`}
+                    onClick={() => setFinancialsOpen(o => !o)}
+                  >
+                    <DollarSign size={18} />
+                    <span>Financials</span>
+                    <ChevronDown size={14} className={`sidebar-dropdown-arrow${financialsOpen ? ' rotated' : ''}`} />
+                  </button>
+                  {financialsOpen && (
+                    <div className="sidebar-dropdown-items">
+                      <NavLink to="/station/financials/invoices" className="sidebar-link sidebar-sub-link">
+                        <FileBarChart size={16} />
+                        <span>Invoices</span>
+                        <ChevronRight size={14} className="sidebar-link-arrow" />
+                      </NavLink>
+                      <NavLink to="/station/financials/payments" className="sidebar-link sidebar-sub-link">
+                        <DollarSign size={16} />
+                        <span>Payments</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                     </div>

@@ -1138,6 +1138,42 @@ body {
   color: var(--text-muted);
 }
 
+/* QBO-style modern action buttons */
+.qbo-action-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border: none; border-radius: 8px;
+  cursor: pointer; background: transparent;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+}
+.qbo-action-btn:hover { transform: scale(1.1); }
+.qbo-action-btn:active { transform: scale(0.95); }
+
+.qbo-action-edit { color: #0077c2; }
+.qbo-action-edit:hover { background: #e3f2fd; color: #005a9e; }
+
+.qbo-action-delete { color: #8c8c8c; }
+.qbo-action-delete:hover { background: #fdecea; color: #d0021b; }
+
+.qbo-action-save { color: #2ca01c; }
+.qbo-action-save:hover { background: #e8f5e9; color: #1b7a12; }
+
+.qbo-action-cancel { color: #8c8c8c; }
+.qbo-action-cancel:hover { background: #f5f5f5; color: #333; }
+
+/* Payment badges */
+.pay-type-badge, .pay-method-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+
+/* Form grid 3-col */
+.form-grid-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+@media (max-width: 768px) {
+  .form-grid-3 { grid-template-columns: 1fr; }
+}
+
 .action-cancel:hover {
   background: var(--bg);
 }
@@ -2034,4 +2070,268 @@ body {
   .app-main {
     margin-left: 64px;
   }
+}
+
+/* ============================================================
+   OMC DASHBOARD — QBO STYLE KPI + CHARTS
+   ============================================================ */
+
+/* KPI row */
+.qbo-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.qbo-kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
+}
+.qbo-kpi-card:hover { box-shadow: var(--shadow); }
+
+.qbo-kpi-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.qbo-kpi-green  { background: #e8f5e9; color: #2ca01c; }
+.qbo-kpi-blue   { background: #e3f2fd; color: #0077c2; }
+.qbo-kpi-orange { background: #fff3e0; color: #f5a623; }
+.qbo-kpi-red    { background: #fce4ec; color: #d0021b; }
+
+.qbo-kpi-body {
+  display: flex; flex-direction: column;
+}
+.qbo-kpi-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px;
+  color: var(--text-muted); font-weight: 600;
+}
+.qbo-kpi-value {
+  font-size: 22px; font-weight: 800; color: var(--text); line-height: 1.2;
+}
+
+/* Grid layouts */
+.qbo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 900px) {
+  .qbo-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Chart cards */
+.qbo-chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.qbo-chart-card h3 {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin-bottom: 16px; border-bottom: 1px solid var(--border-light);
+  padding-bottom: 10px;
+}
+
+/* Donut */
+.qbo-donut-wrapper {
+  display: flex; align-items: center; gap: 28px; justify-content: center;
+}
+.qbo-donut-legend {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.qbo-legend-item {
+  display: flex; align-items: center; gap: 8px; font-size: 13px;
+}
+.qbo-legend-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.qbo-legend-label { color: var(--text-secondary); }
+.qbo-legend-value { font-weight: 700; color: var(--text); margin-left: auto; }
+.qbo-empty-chart {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 160px; color: var(--text-muted); font-size: 14px;
+}
+
+/* Bar chart */
+.qbo-bar-chart {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.qbo-bar-item {
+  display: grid; grid-template-columns: 100px 1fr 60px; gap: 10px; align-items: center;
+}
+.qbo-bar-label {
+  font-size: 13px; font-weight: 600; color: var(--text-secondary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.qbo-bar-track {
+  height: 18px; background: var(--border-light); border-radius: 9px; overflow: hidden;
+}
+.qbo-bar-fill {
+  height: 100%; border-radius: 9px;
+  transition: width 0.5s ease;
+}
+.qbo-bar-value {
+  font-size: 13px; font-weight: 700; color: var(--text); text-align: right;
+}
+
+/* Line chart */
+.qbo-line-chart {
+  width: 100%;
+}
+.qbo-line-chart svg {
+  width: 100%; height: 120px;
+}
+.qbo-line-labels {
+  display: flex; justify-content: space-between; margin-top: 6px;
+  font-size: 11px; color: var(--text-muted);
+}
+
+/* Mini table */
+.qbo-mini-table {
+  width: 100%;
+}
+.qbo-mini-header {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--text-muted); font-weight: 700;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border-light);
+  margin-bottom: 6px;
+}
+.qbo-mini-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  font-size: 13px; color: var(--text-secondary);
+  padding: 7px 0; border-bottom: 1px solid var(--border-light);
+}
+.qbo-mini-row:last-child { border-bottom: none; }
+.qbo-cell-bold { font-weight: 600; color: var(--text); }
+
+/* Fuel tank gauges */
+.qbo-fuel-tanks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 8px 0;
+}
+.qbo-fuel-tank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.qbo-tank-gauge {
+  position: relative;
+  width: 56px;
+  height: 110px;
+  border: 2px solid var(--border);
+  border-radius: 8px 8px 12px 12px;
+  background: #f4f5f7;
+  overflow: hidden;
+}
+.qbo-tank-fill {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  border-radius: 0 0 10px 10px;
+  transition: height 0.6s ease;
+}
+.qbo-tank-fill.qbo-tank-low {
+  animation: tankPulse 1.5s ease-in-out infinite;
+}
+@keyframes tankPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.qbo-tank-pct {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800;
+  color: var(--text);
+  text-shadow: 0 0 4px rgba(255,255,255,0.8);
+  z-index: 1;
+}
+.qbo-tank-info {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.qbo-tank-grade {
+  font-size: 12px; font-weight: 700; color: var(--text);
+  text-align: center;
+}
+.qbo-tank-litres {
+  font-size: 15px; font-weight: 800; color: var(--text);
+}
+.qbo-tank-cap {
+  font-size: 10px; color: var(--text-muted);
+}
+
+/* Revenue by fuel tabs + cards */
+.qbo-rev-tabs {
+  display: flex; gap: 4px; margin-bottom: 16px;
+}
+.qbo-rev-tab {
+  padding: 5px 16px; border-radius: 20px;
+  border: 1px solid var(--border); background: #fff;
+  color: var(--text-secondary); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.12s;
+}
+.qbo-rev-tab:hover { border-color: var(--qb-green); color: var(--qb-green); }
+.qbo-rev-tab.active { background: var(--qb-green); border-color: var(--qb-green); color: #fff; }
+
+.qbo-rev-cards {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.qbo-rev-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg); border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+.qbo-rev-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.qbo-rev-info {
+  display: flex; justify-content: space-between; align-items: center; flex: 1;
+}
+.qbo-rev-grade {
+  font-size: 13px; font-weight: 600; color: var(--text);
+}
+.qbo-rev-amount {
+  font-size: 14px; font-weight: 800; color: var(--text);
+}
+.qbo-rev-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px; margin-top: 4px;
+  border-top: 2px solid var(--border);
+  font-size: 13px; font-weight: 700; color: var(--text);
+}
+
+/* All Orders status cards */
+.qbo-order-statuses {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;
+}
+.qbo-order-status-card {
+  background: var(--bg); border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm); padding: 18px 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  transition: box-shadow 0.15s;
+}
+.qbo-order-status-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.qbo-order-status-count {
+  font-size: 28px; font-weight: 800; line-height: 1;
+}
+.qbo-order-status-label {
+  font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px;
 }

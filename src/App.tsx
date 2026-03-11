@@ -22,6 +22,10 @@ import VehiclePage from './pages/VehiclePage';
 import UsersPage from './pages/UsersPage';
 import FuelTransactionsPage from './pages/FuelTransactionsPage';
 import TransactionHistoryPage from './pages/TransactionHistoryPage';
+import OmcCustomersPage from './pages/OmcCustomersPage';
+import InvoicesPage from './pages/InvoicesPage';
+import PaymentsPage from './pages/PaymentsPage';
+import OmcDashboardPage from './pages/OmcDashboardPage';
 
 export default function App() {
   return (
@@ -59,7 +63,8 @@ export default function App() {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<StationPendingPage />} />
+              <Route index element={<OmcDashboardPage />} />
+              <Route path="pending" element={<StationPendingPage />} />
               <Route path="all" element={<StationAllOrdersPage />} />
               <Route path="pump-simulator" element={<FuelPumpSimulatorPage />} />
               <Route path="attendants" element={<AttendantsPage />} />
@@ -69,6 +74,10 @@ export default function App() {
               <Route path="reports/by-grade" element={<ReportByGradePage />} />
               <Route path="reports/by-customer" element={<ReportByCustomerPage />} />
               <Route path="reports/statements" element={<StatementsPage />} />
+              <Route path="management/customers" element={<OmcCustomersPage />} />
+              <Route path="financials/invoices" element={<InvoicesPage />} />
+              <Route path="financials/payments" element={<PaymentsPage />} />
+              <Route path="financials/statements" element={<StatementsPage />} />
             </Route>
 
             {/* Default redirect */}
