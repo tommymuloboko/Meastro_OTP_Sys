@@ -26,6 +26,7 @@ import OmcCustomersPage from './pages/OmcCustomersPage';
 import InvoicesPage from './pages/InvoicesPage';
 import PaymentsPage from './pages/PaymentsPage';
 import OmcDashboardPage from './pages/OmcDashboardPage';
+import SystemTxPage from './pages/SystemTxPage';
 
 export default function App() {
   return (
@@ -73,6 +74,7 @@ export default function App() {
               <Route path="reports/by-pump" element={<ReportByPumpPage />} />
               <Route path="reports/by-grade" element={<ReportByGradePage />} />
               <Route path="reports/by-customer" element={<ReportByCustomerPage />} />
+              <Route path="reports/system-tx" element={<SystemTxPage />} />
               <Route path="reports/statements" element={<StatementsPage />} />
               <Route path="management/customers" element={<OmcCustomersPage />} />
               <Route path="financials/invoices" element={<InvoicesPage />} />

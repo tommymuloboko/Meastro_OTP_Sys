@@ -24,6 +24,7 @@ import {
   Droplets,
   DollarSign,
   Clock,
+  FileText,
 } from 'lucide-react';
 
 export default function Layout() {
@@ -167,6 +168,11 @@ export default function Layout() {
                       <NavLink to="/station/reports/by-customer" className="sidebar-link sidebar-sub-link">
                         <Users size={16} />
                         <span>Sales by Customer</span>
+                        <ChevronRight size={14} className="sidebar-link-arrow" />
+                      </NavLink>
+                      <NavLink to="/station/reports/system-tx" className="sidebar-link sidebar-sub-link">
+                        <FileText size={16} />
+                        <span>System Tx</span>
                         <ChevronRight size={14} className="sidebar-link-arrow" />
                       </NavLink>
                     </div>
